@@ -43,14 +43,6 @@ function IndexPage(props) {
             pathname:"/cardList"
         }))
     }
-    
-	const icons = [
-        'check-circle', 'check', 'check-circle-o',
-        'cross-circle', 'cross', 'cross-circle-o',
-        'up', 'down', 'left',
-        'right', 'ellipsis',
-        'koubei-o', 'koubei', 'loading',
-    ];
 
 	return (
         <QueueAnim  duration="500" type="left" style={{height:'100%',width:'100%'}}>
@@ -58,19 +50,13 @@ function IndexPage(props) {
             <div key="layout" className="layout">
                 <WhiteSpace size="sm" />
                 <WingBlank size="sm" className="Index_wrap">
-                    <Button className="title"  inline type="primary" icon={require('../svg/city.svg')} onClick={jumpList}>城市列表</Button>
-               
-                    <Button className="title" inline type="warning" icon={require('../svg/book.svg')} onClick={jumpBooks}>购书列表</Button>
-                    
+                    <Button className="title"  inline type="primary" icon={require('../svg/city.svg')} onClick={jumpList}>城市列表</Button>              
+                    <Button className="title" inline type="warning" icon={require('../svg/book.svg')} onClick={jumpBooks}>购书列表</Button> 
                     <Button className="title" inline type="ghost" icon={require('../svg/book.svg')} onClick={jumpListView}>ListView</Button>
-                
                     <Button className="title" inline icon={require('../svg/book.svg')} onClick={jumpIndex}>首页</Button>
-                
                     <Button className="title" inline type="primary" icon={require('../svg/book.svg')} onClick={jumpDropDown}>下拉刷新</Button>
-                
                     <Button className="title" inline icon={require('../svg/card.svg')} onClick={jumpCardList}>管理油卡</Button>
                 </WingBlank>
-
                 <WhiteSpace size="sm" />
                 <LineChart></LineChart>
             </div>

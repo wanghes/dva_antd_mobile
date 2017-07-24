@@ -10,24 +10,19 @@ import './index.less';
 
 
 class CardAdd extends React.Component {
-
     constructor(props, context){
         super(props)
         this.state = {
             list:[]
         };
-        console.log(this.props.list)
     }
 
     componentWillReceiveProps(nextProps) {
-        
         if (nextProps.list !== this.props.list) {
             let list = [ ...this.state.list, ...nextProps.list ]
-
             this.setState({
                 list:list
             });
-
         }
     }
 
@@ -61,9 +56,8 @@ class CardAdd extends React.Component {
                         }
                     }
                 })
-        }, style: { fontWeight: 'bold' } },
+            }, style: { fontWeight: 'bold' } },
         ]);
-
     };
 
     addCard(){
@@ -108,7 +102,7 @@ class CardAdd extends React.Component {
 
     render(){
         const {jump_action}= this.props
-         let jumpDirection = "left";
+        let jumpDirection = "left"
         if(jump_action=="POP"){
             jumpDirection = "left";
         }else{
@@ -116,38 +110,36 @@ class CardAdd extends React.Component {
         }
 
         return(
-            <QueueAnim    style={{height:"100%"}} className="added_cards" duration="1500" type={jumpDirection}>
+            <QueueAnim  style={{height:"100%"}} className="added_cards" duration="1500" type={jumpDirection}>
                 <QueueAnim  key="inner" component="List" type={['right', 'left']} leaveReverse>
                     { 
                         this.state.list.map((item)=>{
                             return (
                                 <SwipeAction key={item.id}
-                                style={{ borderBottom: '1px solid #dfdfdf' }}
-                                autoClose
-                                right={[
-                                    {
-                                        text: '取消',
-                                        onPress: () => console.log('cancel'),
-                                        style: { backgroundColor: '#ddd', color: 'white' },
-                                    },
-                                    {
-                                        text: '删除',
-                                        onPress: () => {this.deleleClick(item.id)},
-                                        style: { backgroundColor: '#F4333C', color: 'white' },
-                                    },
-                                ]}
-                                
-                                onOpen={() => console.log('global open')}
-                                onClose={() => console.log('global close')}
-                                ><List.Item
-                                    extra={item.card_type}
-                                >
-                                {item.vice_no}
-                            </List.Item></SwipeAction>
+                                    style={{ borderBottom: '1px solid #dfdfdf' }}
+                                    autoClose
+                                    right={[
+                                        {
+                                            text: '取消',
+                                            onPress: () => console.log('cancel'),
+                                            style: { backgroundColor: '#ddd', color: 'white' },
+                                        },
+                                        {
+                                            text: '删除',
+                                            onPress: () => {this.deleleClick(item.id)},
+                                            style: { backgroundColor: '#F4333C', color: 'white' },
+                                        },
+                                    ]}
+                                    onOpen={() => console.log('global open11')}
+                                    onClose={() => console.log('global close')}
+                                    >
+                                    <List.Item extra={item.card_type}>
+                                        {item.vice_no}
+                                    </List.Item>
+                                </SwipeAction>
                             )
                         })
-                    }
-                
+                    }                
                 </QueueAnim>
                 <Flex className="circle_wrap" direction="column" justify="center" align="center">
                     <div className="circle_btn" onClick={this.addCard.bind(this)}>

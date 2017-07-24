@@ -9,8 +9,6 @@ import styles from "./index.less";
 import Item from "../../components/card/listItem"
 import SidebarMenuEffects from "./tool";
 
-console.log(SidebarMenuEffects)
-
 let pageIndex = 1;
 const NUM_ROWS  = 20;
 const List_type =2;
