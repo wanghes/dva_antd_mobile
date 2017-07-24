@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+    <title>手机加油卡</title>
+    <script>
+        (function(baseFontSize, fontscale) {
+            var _baseFontSize = baseFontSize || 100;
+            var _fontscale = fontscale || 1;
+            var win = window;
+            var doc = win.document;
+            var ua = navigator.userAgent;
+            var matches = ua.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i);
+            var UCversion = ua.match(/U3\/((\d+|\.){5,})/i);
+            var isUCHd = UCversion && parseInt(UCversion[1].split('.').join(''), 10) >= 80;
+            var isIos = navigator.appVersion.match(/(iphone|ipad|ipod)/gi);
+            var dpr = win.devicePixelRatio || 1;
+            if (!isIos && !(matches && matches[1] > 534) && !isUCHd) {
+                // 如果非iOS, 非Android4.3以上, 非UC内核, 就不执行高清, dpr设为1;
+                dpr = 1;
+            }
+            var scale = 1 / dpr;
+
+            var metaEl = doc.querySelector('meta[name="viewport"]');
+            if (!metaEl) {
+                metaEl = doc.createElement('meta');
+                metaEl.setAttribute('name', 'viewport');
+                doc.head.appendChild(metaEl);
+            }
+            metaEl.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=' + scale + ',maximum-scale=' + scale + ',minimum-scale=' + scale);
+            doc.documentElement.style.fontSize = _baseFontSize / 2 * dpr * _fontscale + 'px';
+            window.viewportScale = dpr;
+        })();
+        if (!window.Promise) {
+            document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <style>
+        .root_spinner_wrap {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            visibility: hidden;
+            transition: opacity .15s ease;
+            position: fixed;
+            z-index: 996;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            top: 0;
+        }
+        
+        .root_spinner {
+            width: 100%;
+            height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-animation: rotator___3-7k_ 1.4s linear infinite;
+            animation: rotator___3-7k_ 1.4s linear infinite;
+            -webkit-animation-play-state: paused;
+            animation-play-state: paused;
+        }
+        
+        .root_show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .root_path {
+            stroke: #ff6600;
+            stroke-dasharray: 126;
+            stroke-dashoffset: 0;
+            -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+            transform-origin: center;
+            -webkit-animation: dash___2fmov 1.4s ease-in-out infinite;
+            animation: dash___2fmov 1.4s ease-in-out infinite;
+        }
+        
+        @-webkit-keyframes rotator___3-7k_ {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+        
+        @keyframes rotator___3-7k_ {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+        
+        @-webkit-keyframes dash___2fmov {
+            0% {
+                stroke-dashoffset: 126;
+            }
+            50% {
+                stroke-dashoffset: 63;
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+            100% {
+                stroke-dashoffset: 126;
+                -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+            }
+        }
+        
+        @keyframes dash___2fmov {
+            0% {
+                stroke-dashoffset: 126;
+            }
+            50% {
+                stroke-dashoffset: 63;
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+            100% {
+                stroke-dashoffset: 126;
+                -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+            }
+        }
+        
+        body {
+            font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+        }
+        /*初始化*/
+        
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        blockquote,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        pre,
+        form,
+        fieldset,
+        legend,
+        button,
+        input,
+        textarea,
+        th,
+        td {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            /*font: 12px/1.5tahoma, arial, \5b8b\4f53;*/
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 100%;
+        }
+        
+        address,
+        cite,
+        dfn,
+        em,
+        var {
+            font-style: normal;
+        }
+        
+        code,
+        kbd,
+        pre,
+        samp {
+            /*font-family: couriernew, courier, monospace;*/
+        }
+        
+        small {
+            font-size: 12px;
+        }
+        
+        ul,
+        ol {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        sup {
+            vertical-align: text-top;
+        }
+        
+        sub {
+            vertical-align: text-bottom;
+        }
+        
+        legend {
+            color: #000;
+        }
+        
+        fieldset,
+        img {
+            border: 0;
+        }
+        
+        button,
+        input,
+        select,
+        textarea {
+            font-size: 100%;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+    </style>
+
+    <div id="root">
+        <div class="root_spinner_wrap root_show">
+            <div class="root_spinner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="44px" height="44px" viewBox="0 0 44 44">
+                <circle class="root_path" fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20"></circle>
+            </svg>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+    <script type="text/javascript" src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+        FastClick.attach(document.body);
+    </script>
+</body>
+
+</html>

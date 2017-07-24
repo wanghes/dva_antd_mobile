@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, IndexRoute, Link, Redirect } from 'dva/router';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import layoutPage from './routes/layoutPage';
 import IndexPage from './routes/IndexPage';
 import ListPage from './routes/ListPage';
@@ -17,7 +17,7 @@ function RouterConfig({ history, app }) {
 		  	<Route path="/" component={layoutPage}>
 			    <IndexRoute component={IndexPage}/>
 			    <Route path="index" component={index} />			   
-			    <Route path="/books" component={booksPage}/>
+			    <Route path="books" component={booksPage}/>
 			    <Route path="listView" component={listViewPage}/>
 			    <Route path="list" component={ListPage}/>
 			    <Route path="refreshList" component={refreshList}/>

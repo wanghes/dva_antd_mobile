@@ -27,18 +27,17 @@ class Message extends React.Component {
         });
         
         this.state = {
-            pageIndex:1,
             list:[],
             dataSource: dataSource.cloneWithRows(props.list),
             isLoading: true,
             hasMore:false
         };
-        console.log(this.state.pageIndex);
+
+        this.pageIndex = 1;
+        
     }
 
-    componentWillUnmount() {     
-       //this.props.list = [];
-       console.log(this.props.list)
+    componentWillUnmount() {  
     }
 
 
@@ -57,7 +56,7 @@ class Message extends React.Component {
                 isLoading: false,
                 hasMore:hasMore
             });
-            this.state.pageIndex++;
+            this.pageIndex++;
         }
     }
 
@@ -66,20 +65,20 @@ class Message extends React.Component {
             return;
         }
         
-        this.props.dispatch({type:"settings/query",payload:{  
-            urlParams:qs.stringify({
-                _page:this.state.pageIndex,
-                _sort:"id",
-                _order:"desc",
-                _limit:NUM_ROWS
-            }),
-            params:{
-                method: 'GET'
-            }
-        }});
-
-        this.setState({ isLoading: true });
-            
+        if(!this.state.isLoading){
+             this.props.dispatch({type:"settings/query",payload:{  
+                urlParams:qs.stringify({
+                    _page:this.pageIndex,
+                    _sort:"id",
+                    _order:"desc",
+                    _limit:NUM_ROWS
+                }),
+                params:{
+                    method: 'GET'
+                }
+            }});
+            this.setState({ isLoading: true });
+        }  
     }
 
      
@@ -116,12 +115,12 @@ class Message extends React.Component {
                     onOpen={() => console.log('global open')}
                     onClose={() => console.log('global close')}
                     >
-                    <List.Item
-                        extra=""
-                        arrow="horizontal"
-                    >
-                        <Tag selected data-seed={rowData.id}>{rowData.mating_system}</Tag> - {rowData.direction} - {rowData.id}
-                    </List.Item>
+                        <List.Item
+                            extra=""
+                            arrow="horizontal"
+                        >
+                            <Tag selected data-seed={rowData.id}>{rowData.mating_system}</Tag> - {rowData.direction} - {rowData.id}
+                        </List.Item>
                     </SwipeAction>
                 );
             }else{
@@ -139,8 +138,9 @@ class Message extends React.Component {
         };
         let loadingString = this.state.isLoading ? '' :'<ActivityIndicator text="正在加载..." />'
         return (
-            <QueueAnim style={{height:"100%"}}  duration="500" type={jumpDirection}>
-                <ListView ref="lv"
+            <QueueAnim style={{height:"100%",width:"100%",overflowX:"hidden"}}  duration="500" type={jumpDirection}>
+                <div ref="lv" style={{height:"100%",width:"100%",overflowX:"hidden"}}>
+                <ListView 
                     dataSource={this.state.dataSource}
                     renderHeader={() => <span>{title}</span>}
                     renderFooter={() => {
@@ -158,16 +158,15 @@ class Message extends React.Component {
                     renderBodyComponent={() => <MyBody />}
                     renderRow={row}
                     scrollerOptions={{ scrollbars: true }}
-                    className="am-list"
+                    className="am-list list_view_list"
                     pageSize={NUM_ROWS}
-                    useBodyScroll
-                    useZscroller
-                    onScroll={() => { }}
+                    onScroll={(event) =>{}}
                     scrollRenderAheadDistance={200}
-                    scrollEventThrottle={300}
+                    scrollEventThrottle={10}
                     onEndReached={this.onEndReached}
                     onEndReachedThreshold={10} 
-                />
+                ></ListView>
+                </div>
             </QueueAnim>
         );
   }

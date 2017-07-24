@@ -21,15 +21,13 @@ const app = dva({
 });
 
 // 2. Plugins
-// app.use({});
 app.use(createLoading());
 
 // 3. Model
-app.model(require('./models/example'));
-app.model(require('./models/books'));
-app.model(require('./models/message'));
-app.model(require('./models/cards'));
-app.model(require('./models/addedCards'));
+let models = require('./models/index');
+for(var i in models){
+	app.model(models[i]);
+}
 
 // 4. Router
 app.router(require('./router'));

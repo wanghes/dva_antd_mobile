@@ -37,7 +37,6 @@ class IndexPage extends React.Component {
             <span className="line"></span>
         );
         const CrossLine = (props) => {
-            // console.log('props',props);
             return (
                 <i style={{"border": `0.04rem solid ${props.color}`}} className="crossLine"></i>
             )

@@ -6,6 +6,28 @@ export default {
     state: {
         title:"油卡列表"
     },
+    subscriptions: {
+        setup({dispatch,history}){
+            history.listen(location=>{
+                if(location.pathname=="/cardAdd"){
+                    dispatch({
+                        type:"query",
+                        payload:{
+                            urlParams:qs.stringify({
+                                _page:1,
+                                _sort:"time",
+                                _order:"desc",
+                                _limit:20
+                            }),
+                            params:{
+                                method: 'GET'
+                            }
+                        }
+                    })
+                }
+            })
+        }
+    },
     reducers: {
         querySuccess(state,{payload}){
             const {list} = payload
@@ -35,27 +57,5 @@ export default {
             const data = yield call(addItem,payload)
             console.log(data);
         }
-    },
-    subscriptions: {
-        setup({dispatch,history}){
-            history.listen(location=>{
-                if(location.pathname="/cardAdd"){
-                    dispatch({
-                        type:"query",
-                        payload:{
-                            urlParams:qs.stringify({
-                                _page:1,
-                                _sort:"time",
-                                _order:"desc",
-                                _limit:20
-                            }),
-                            params:{
-                                method: 'GET'
-                            }
-                        }
-                    })
-                }
-            })
-        }
-    },
+    }
 };

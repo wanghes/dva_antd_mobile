@@ -6,7 +6,7 @@ export default {
     },
 
   	subscriptions: {
-    	setup({ dispatch, history }) {  // eslint-disable-line
+    	setup({ dispatch, history }) {  
         	history.listen( location=>{
              	if(location.pathname=="/books"){
                 	dispatch({type:"query",payload:{a:1}})

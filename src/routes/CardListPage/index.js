@@ -86,7 +86,6 @@ class CardList extends React.Component {
     }
 
     jumpCardAdd(){
-        console.log(11)
         this.props.dispatch(routerRedux.push({
             pathname:"/cardAdd"
         }))
@@ -112,15 +111,11 @@ class CardList extends React.Component {
             <QueueAnim style={{height:"100%"}} id="st-container" className="st-container"  duration="500" type={jumpDirection}>
                 <div className="st-menu st-effect-1">
                     <div className="filter_box">
-
                     </div>
                 </div>
-                <div className="st-pusher">
-                    
-
-                    <ListView ref="lv"
-                        dataSource={this.state.dataSource}
-                        renderHeader={() => <span>{title}</span>}
+                <div className="st-pusher" ref="lv">
+                    <ListView dataSource={this.state.dataSource}
+                        renderHeader={() =>(<span>{title}</span>)}
                         renderFooter={() => {
                             if(this.state.isLoading){
                                 return (<div style={{display: 'flex',justifyContent:"center",alignItems:"center" }}>
@@ -139,20 +134,18 @@ class CardList extends React.Component {
                         className="am-list card_list_page"
                         pageSize={NUM_ROWS}
                         useBodyScroll
-                        useZscroller
                         onScroll={() => { }}
                         scrollRenderAheadDistance={100}
                         scrollEventThrottle={100}
                         onEndReached={this.onEndReached}
                         onEndReachedThreshold={200}
-                    
-                    />
+                    ></ListView>
                     <div className="top_bar">
                         <div className="top">
                             <SearchBar placeholder="卡号后4位/车牌号" autoFocus  />
                             <div className="icon_wrap" onClick={this.showLayer.bind(this)}><Icon type={require('../../svg/qr.svg')} /></div>
                         </div>
-                        {/*<Button type="primary"  onClick={this.jumpCardAdd.bind(this)} across>添加油卡</Button>*/}
+                        
                         <Flex className="show_account_box" direction="column">
                             <Flex justify="between" className="top_show_account_box">
                                 <Flex direction="column">
@@ -181,7 +174,7 @@ class CardList extends React.Component {
                 </div>
             </QueueAnim>
         );
-  }
+    }
 }
 
 CardList.propTypes = {

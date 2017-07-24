@@ -65,42 +65,39 @@ function hasParentClass( e, classname ) {
 
 
 function SidebarMenuEffects() {
-
     var container = document.querySelector( '#st-container' ),
-                reset = document.getElementById( 'closeMenu' ),
-        button = document.querySelector('#showFilter'),
-        // event type (if mobile use touch events)
-        eventtype ='touchstart',
-        resetMenu = function() {
-            classie.remove( container, 'st-menu-open' );
-        },
-        bodyClickFn = function(evt) {
-            if( !hasParentClass( evt.target, 'st-menu' ) ) {
-                resetMenu();
-                document.removeEventListener( eventtype, bodyClickFn );
-            }
-        },
-        resetClickFn = function(evt) {
-            if (evt.target == reset) {
-                resetMenu();
-                document.removeEventListener(eventtype, bodyClickFn);
-            }
-        };
+	    reset = document.getElementById( 'closeMenu' ),
+	    button = document.querySelector('#showFilter'),
+	    // event type (if mobile use touch events)
+	    eventtype ='touchstart',
+	    resetMenu = function() {
+	        classie.remove( container, 'st-menu-open' );
+	    },
+	    bodyClickFn = function(evt) {
+	        if( !hasParentClass( evt.target, 'st-menu' ) ) {
+	            resetMenu();
+	            document.removeEventListener( eventtype, bodyClickFn );
+	        }
+	    },
+	    resetClickFn = function(evt) {
+	        if (evt.target == reset) {
+	            resetMenu();
+	            document.removeEventListener(eventtype, bodyClickFn);
+	        }
+	    };
 
-        var effect = button.getAttribute( 'data-effect' );
-        button.addEventListener( eventtype, function( ev ) {
-            ev.stopPropagation();
-            ev.preventDefault();
-            container.className = 'st-container'; // clear
-            classie.add( container, effect );
-            setTimeout( function() {
-                classie.add( container, 'st-menu-open' );
-            }, 25 );
-            document.addEventListener( eventtype, bodyClickFn );
-            document.addEventListener( eventtype, resetClickFn );
-        });
-
-
+    var effect = button.getAttribute( 'data-effect' );
+    button.addEventListener( eventtype, function( ev ) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        container.className = 'st-container'; // clear
+        classie.add( container, effect );
+        setTimeout( function() {
+            classie.add( container, 'st-menu-open' );
+        }, 25 );
+        document.addEventListener( eventtype, bodyClickFn );
+        document.addEventListener( eventtype, resetClickFn );
+    });
 }
 
 export default SidebarMenuEffects;

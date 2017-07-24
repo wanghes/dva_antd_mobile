@@ -6,7 +6,8 @@ export default {
 			title:"城市列表"
 	},
 	subscriptions: {
-		setup({ dispatch, history }) {  // eslint-disable-line
+		setup({ dispatch, history }) { 
+			 
 			history.listen( location=>{
 				if(location.pathname=="/list"){
 					dispatch({type:"query",payload:{

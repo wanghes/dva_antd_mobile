@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "start": "set PORT=3500&&roadhog server NODE_ENV=development",
-    "build": "roadhog build NODE_ENV=production"
+    "start": "set PORT=3500&&roadhog server",
+    "build": "roadhog build"
   },
   "engines": {
     "install-node": "6.9.2"

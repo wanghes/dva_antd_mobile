@@ -38,9 +38,9 @@ class ListPage extends React.Component {
             }))
         }
         return (
-             <QueueAnim  duration="500" type="left">
+             <QueueAnim style={{width:'100%',height:'100%',overflowX:"hidden"}} duration="500" type="left">
                 <Spinner loading={loading} />
-                <div key="index" style={{width:'100%',height:'100%'}}>
+                <div key="index">
                     <WhiteSpace size="sm" />
                     <WingBlank size="sm">
                         <Accordion className="my-accordion">

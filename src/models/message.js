@@ -8,7 +8,8 @@ export default {
     },
 
     subscriptions: {
-        setup({ dispatch, history }) {      
+        setup({ dispatch, history }) {    
+
             history.listen( location=>{
                 if(location.pathname=="/listView"){
                     dispatch({type:"query",payload:{  

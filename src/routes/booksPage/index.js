@@ -15,7 +15,7 @@ const  BooksPage =({dispatch,list=[],location,loading})=>{
     	}))
   	}
   	return (
-        <QueueAnim  duration="500" type="right">
+        <QueueAnim style={{height:"100%",width:"100%",overflowX:"hidden"}} duration="500" type="right">
             <Spinner loading={loading} />
             <div key="books">
                 <WhiteSpace size="sm" />
